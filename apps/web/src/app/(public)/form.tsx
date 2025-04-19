@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function LoginForm() {
 	const router = useRouter();
 
-	const onFinish = (values: any) => {
+	const onFinish = (values: { username: string; password: string }) => {
 		console.log("Received values of form: ", values);
 		router.push("/dashboard");
 	};
