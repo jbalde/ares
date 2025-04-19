@@ -17,6 +17,7 @@ export default function SiderComponent() {
 				width={150}
 				style={{
 					margin: "0 0 0 16px",
+					padding: "5px",
 					width: "auto",
 					height: "64px",
 				}}
