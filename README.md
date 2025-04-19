@@ -2,7 +2,7 @@
 
 # Ares Ticket Management System
 
-![Ares Version](https://img.shields.io/badge/version-0.2-blue.svg?cacheSeconds=86400 "Ares Ticket Management System") ![GitHub Repo stars](https://img.shields.io/github/stars/jbalde/ares)
+![GitHub Repo stars](https://img.shields.io/github/stars/jbalde/ares)
 
 ## ✨ Features
 
