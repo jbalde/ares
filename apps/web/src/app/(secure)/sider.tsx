@@ -1,9 +1,17 @@
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import {
-	UploadOutlined,
+	AlertOutlined,
+	ApiOutlined,
+	BarChartOutlined,
+	DashboardOutlined,
+	ExceptionOutlined,
+	EyeOutlined,
+	FieldTimeOutlined,
+	ReadOutlined,
+	SettingOutlined,
+	TeamOutlined,
 	UserOutlined,
-	VideoCameraOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 
@@ -28,19 +36,59 @@ export default function SiderComponent() {
 				defaultSelectedKeys={["1"]}
 				items={[
 					{
-						key: "1",
+						key: "dashboard",
+						icon: <DashboardOutlined />,
+						label: "Dashboard",
+					},
+					{
+						key: "tickets",
+						icon: <ExceptionOutlined />,
+						label: "Tickets",
+					},
+					{
+						key: "users",
 						icon: <UserOutlined />,
-						label: "nav 1",
+						label: "Users",
 					},
 					{
-						key: "2",
-						icon: <VideoCameraOutlined />,
-						label: "nav 2",
+						key: "teams",
+						icon: <TeamOutlined />,
+						label: "Teams",
 					},
 					{
-						key: "3",
-						icon: <UploadOutlined />,
-						label: "nav 3",
+						key: "knowledge-base",
+						icon: <ReadOutlined />,
+						label: "Knowledge Base",
+					},
+					{
+						key: "monitoring",
+						icon: <EyeOutlined />,
+						label: "Monitoring",
+					},
+					{
+						key: "reports",
+						icon: <BarChartOutlined />,
+						label: "Reports",
+					},
+					{
+						key: "slas",
+						icon: <FieldTimeOutlined />,
+						label: "SLAs",
+					},
+					{
+						key: "integrations",
+						icon: <ApiOutlined />,
+						label: "Integrations",
+					},
+					{
+						key: "alerts",
+						icon: <AlertOutlined />,
+						label: "Alerts",
+					},
+					{
+						key: "settinsgs",
+						icon: <SettingOutlined />,
+						label: "Settings",
 					},
 				]}
 			/>
