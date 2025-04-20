@@ -1,5 +1,3 @@
-import "../globals.css";
-import "@ant-design/v5-patch-for-react-19";
 import { Avatar, Button, Dropdown, Flex, Layout, MenuProps } from "antd";
 import SiderComponent from "./sider";
 import { Content, Header } from "antd/es/layout/layout";
@@ -32,7 +30,6 @@ export default function RootLayout({
 			<Layout>
 				<Header style={{ padding: "5px 16px" }}>
 					<Flex
-						//gap="middle"
 						align="flex-end"
 						justify="center"
 						vertical
