@@ -3,6 +3,7 @@ import SiderComponent from "./sider";
 import { Content, Header } from "antd/es/layout/layout";
 import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import HeaderComponent from "./header";
 
 export default function RootLayout({
 	children,
@@ -28,22 +29,7 @@ export default function RootLayout({
 		<Layout style={{ minHeight: "100vh" }}>
 			<SiderComponent />
 			<Layout>
-				<Header style={{ padding: "5px 16px" }}>
-					<Flex
-						align="flex-end"
-						justify="center"
-						vertical
-						style={{ height: "100%" }}
-					>
-						<Dropdown menu={{ items }} arrow={{ pointAtCenter: true }}>
-							<Button
-								shape="circle"
-								icon={<Avatar icon={<UserOutlined />} />}
-								size="large"
-							></Button>
-						</Dropdown>
-					</Flex>
-				</Header>
+				<HeaderComponent />
 				<Content
 					style={{
 						margin: "24px 16px",
