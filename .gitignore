@@ -42,3 +42,5 @@ yarn-error.log*
 package-lock.json
 
 yarn.lock
+
+apps/web/src/lib/db/prisma/
