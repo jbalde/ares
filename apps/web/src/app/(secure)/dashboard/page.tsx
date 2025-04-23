@@ -1,6 +1,7 @@
 import { Card, Col, Row, Statistic } from "antd";
 import { ArrowUpOutlined } from "@ant-design/icons";
 import TicketGraphComponent from "./ticket-graph";
+import TicketsTableComponent from "./tickets-table";
 
 export default function Home() {
 	return (
@@ -61,6 +62,12 @@ export default function Home() {
 					<Card variant="borderless">
 						<h2>Ticket Graph</h2>
 						<TicketGraphComponent />
+					</Card>
+				</Col>
+				<Col span={24}>
+					<Card variant="borderless">
+						<h2>Recent tickets</h2>
+						<TicketsTableComponent />
 					</Card>
 				</Col>
 			</Row>
