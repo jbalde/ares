@@ -14,6 +14,7 @@ import {
 	UserOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SiderComponent() {
 	return (
@@ -38,12 +39,12 @@ export default function SiderComponent() {
 					{
 						key: "dashboard",
 						icon: <DashboardOutlined />,
-						label: "Dashboard",
+						label: <Link href="/dashboard">Dashboard</Link>,
 					},
 					{
 						key: "tickets",
 						icon: <ExceptionOutlined />,
-						label: "Tickets",
+						label: <Link href="/tickets">Tickets</Link>,
 					},
 					{
 						key: "users",
