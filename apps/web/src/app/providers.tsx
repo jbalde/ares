@@ -16,7 +16,8 @@ export function Providers({
 						algorithm: theme.darkAlgorithm,
 						token: {
 							// Seed Token
-							colorPrimary: "#b81414",
+							colorPrimary: "#ca2a30",
+							colorLink: "#ca2a30",
 							borderRadius: 3,
 						},
 					}}
