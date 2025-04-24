@@ -16,15 +16,22 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
-  name  String
+  id     Int      @id @default(autoincrement())
+  email  String   @unique
+  name   String
+  Ticket Ticket[]
+
+  @@index([email], name: "idx_user_email")
 }
 
 model Ticket {
-  id          Int    @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   subject     String
   description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdById Int
 }
 
 model Customer {
