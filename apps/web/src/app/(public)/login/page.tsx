@@ -1,5 +1,5 @@
 import LoginForm from "./form";
 
-export default function Home() {
+export default function LoginPage() {
 	return <LoginForm />;
 }
