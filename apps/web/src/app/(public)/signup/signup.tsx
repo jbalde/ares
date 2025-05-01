@@ -1,23 +1,24 @@
 "use server";
 import { PrismaClient } from "@/db/prisma";
+import bcrypt from "bcrypt";
+import { redirect } from "next/navigation";
 
 export async function signup(values: {
 	name: string;
 	password: string;
 	email: string;
 }) {
-	const prisma = new PrismaClient();
+	const hashedPassword = await bcrypt.hash(values.password, 10);
 
-	console.log("Received values of form: ", values);
+	const prisma = new PrismaClient();
 
 	const user = await prisma.user.create({
 		data: {
 			email: values.email,
-			password: values.password,
+			password: hashedPassword,
 			name: values.name,
 		},
 	});
 
-	console.log("User created: ", user);
-	return user;
+	redirect("/login");
 }
