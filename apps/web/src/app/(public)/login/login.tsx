@@ -1,5 +1,6 @@
 "use server";
 import { PrismaClient } from "@/db/prisma";
+import { createSession } from "@/lib/session/session";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
 
@@ -8,11 +9,9 @@ export async function login(values: {
 	password: string;
 	remember: boolean;
 }) {
-	const hashedPassword = await bcrypt.hash(values.password, 10);
-
 	const prisma = new PrismaClient();
 
-	const user = await prisma.user.findUnique({
+	const user = await prisma.user.findFirst({
 		where: {
 			email: values.email,
 		},
@@ -27,6 +26,8 @@ export async function login(values: {
 	if (!isValidPassword) {
 		throw new Error("Invalid password");
 	}
+
+	await createSession(user.id);
 
 	redirect("/dashboard");
 }

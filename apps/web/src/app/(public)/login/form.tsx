@@ -1,17 +1,10 @@
 "use client";
 import { Button, Checkbox, Flex, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { login } from "./login";
 
 export default function LoginForm() {
-	const router = useRouter();
-
-	const onFinish = (values: { username: string; password: string }) => {
-		console.log("Received values of form: ", values);
-		router.push("/dashboard");
-	};
-
 	return (
 		<Flex justify="center" align="center" vertical style={{ height: "100%" }}>
 			<Image
@@ -30,7 +23,7 @@ export default function LoginForm() {
 				name="login"
 				initialValues={{ remember: true }}
 				style={{ maxWidth: 360 }}
-				onFinish={onFinish}
+				onFinish={login}
 			>
 				<Form.Item
 					name="username"
