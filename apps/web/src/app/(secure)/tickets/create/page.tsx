@@ -1,5 +1,4 @@
-import { Button, Card, Col, Row, Space } from "antd";
-import Link from "next/link";
+import { Card, Col, Row } from "antd";
 import CreateTicketForm from "./form";
 
 export default function Home() {

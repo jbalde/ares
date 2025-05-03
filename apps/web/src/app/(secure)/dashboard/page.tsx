@@ -2,7 +2,6 @@ import { Card, Col, Row, Statistic } from "antd";
 import {
 	ArrowDownOutlined,
 	ArrowUpOutlined,
-	SwapOutlined,
 	VerticalAlignMiddleOutlined,
 } from "@ant-design/icons";
 import TicketGraphComponent from "./ticket-graph";
