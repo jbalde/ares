@@ -1,5 +1,5 @@
 "use client";
-import { Button, Checkbox, Flex, Form, Input } from "antd";
+import { Button, Flex, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -7,15 +7,6 @@ import { signup } from "./signup";
 
 export default function RegisterForm() {
 	const router = useRouter();
-
-	const onFinish = (values: {
-		name: string;
-		password: string;
-		email: string;
-	}) => {
-		console.log("Received values of form: ", values);
-		router.push("/dashboard");
-	};
 
 	return (
 		<Flex justify="center" align="center" vertical style={{ height: "100%" }}>
