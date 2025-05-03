@@ -33,6 +33,7 @@ model Ticket {
   updatedAt   DateTime @default(now())
   createdBy   User     @relation(fields: [createdById], references: [id])
   createdById Int
+  status      String
 }
 
 model Customer {
