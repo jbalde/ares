@@ -44,6 +44,13 @@ const getTicketsLastsMonths = unstable_cache(
 				percentage:
 					(prevTickets.length - prev2Tickets.length) / prev2Tickets.length,
 			},
+			open: {
+				value: prevTickets.filter((ticket) => ticket.status !== "done").length,
+				percentage:
+					(prevTickets.filter((ticket) => ticket.status !== "done").length -
+						prev2Tickets.filter((ticket) => ticket.status !== "done").length) /
+					prev2Tickets.filter((ticket) => ticket.status !== "done").length,
+			},
 		};
 
 		return tickets;
@@ -53,7 +60,7 @@ const getTicketsLastsMonths = unstable_cache(
 );
 
 export default async function DashboardPage() {
-	const { recents, total } = await getTicketsLastsMonths();
+	const { recents, total, open } = await getTicketsLastsMonths();
 
 	const isUpOrDown = (value: number) => {
 		let icon;
@@ -100,11 +107,15 @@ export default async function DashboardPage() {
 				<Col span={6}>
 					<Card variant="borderless">
 						<Statistic
-							title="Open tickets last month"
-							value={40}
+							title={
+								<>
+									<strong>{open.value}</strong> open tickets last month
+								</>
+							}
+							value={Number(open.percentage)}
 							precision={0}
-							valueStyle={{ color: "#3f8600" }}
-							prefix={<ArrowUpOutlined />}
+							valueStyle={{ color: isUpOrDown(open.percentage).color }}
+							prefix={isUpOrDown(open.percentage).icon}
 							suffix="%"
 						/>
 					</Card>
