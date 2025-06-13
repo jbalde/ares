@@ -1,7 +1,7 @@
 import { Card, Col, Row } from "antd";
 import CreateTicketForm from "./form";
 
-export default function Home() {
+export default function TicketCreatePage() {
 	return (
 		<>
 			<Row gutter={[16, 16]}>

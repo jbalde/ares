@@ -2,7 +2,7 @@ import { Button, Card, Col, Row, Space } from "antd";
 import TicketsTableComponent from "./tickets-table";
 import Link from "next/link";
 
-export default function Home() {
+export default function TicketsPage() {
 	return (
 		<>
 			<Row gutter={[16, 16]}>
