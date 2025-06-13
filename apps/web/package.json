@@ -13,7 +13,7 @@
 		"@ant-design/plots": "^2.3.3",
 		"@ant-design/v5-patch-for-react-19": "^1.0.3",
 		"@prisma/client": "^6.6.0",
-		"@prisma/extension-accelerate": "^1.3.0",
+		"@prisma/extension-accelerate": "^2.0.1",
 		"antd": "^5.24.7",
 		"bcrypt": "^5.1.1",
 		"jose": "^6.0.10",
