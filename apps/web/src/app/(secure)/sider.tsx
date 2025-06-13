@@ -49,47 +49,47 @@ export default function SiderComponent() {
 					{
 						key: "users",
 						icon: <UserOutlined />,
-						label: "Users",
+						label: <Link href="/users">Users</Link>,
 					},
 					{
 						key: "teams",
 						icon: <TeamOutlined />,
-						label: "Teams",
+						label: <Link href="/teams">Teams</Link>,
 					},
 					{
 						key: "knowledge-base",
 						icon: <ReadOutlined />,
-						label: "Knowledge Base",
+						label: <Link href="/knowledge-base">Knowledge Base</Link>,
 					},
 					{
 						key: "monitoring",
 						icon: <EyeOutlined />,
-						label: "Monitoring",
+						label: <Link href="/monitoring">Monitoring</Link>,
 					},
 					{
 						key: "reports",
 						icon: <BarChartOutlined />,
-						label: "Reports",
+						label: <Link href="/reports">Reports</Link>,
 					},
 					{
 						key: "slas",
 						icon: <FieldTimeOutlined />,
-						label: "SLAs",
+						label: <Link href="/slas">SLAs</Link>,
 					},
 					{
 						key: "integrations",
 						icon: <ApiOutlined />,
-						label: "Integrations",
+						label: <Link href="/integrations">Integrations</Link>,
 					},
 					{
 						key: "alerts",
 						icon: <AlertOutlined />,
-						label: "Alerts",
+						label: <Link href="/alerts">Alerts</Link>,
 					},
 					{
 						key: "settinsgs",
 						icon: <SettingOutlined />,
-						label: "Settings",
+						label: <Link href="/settings">Settings</Link>,
 					},
 				]}
 			/>
