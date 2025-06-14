@@ -2,8 +2,14 @@
 import { Column } from "@ant-design/plots";
 import { useEffect, useState } from "react";
 
+type TicketGraphData = {
+	date: string;
+	sla: "compliance" | "warning" | "violated";
+	amount: number;
+};
+
 export default function TicketGraphComponent() {
-	const [data, setData] = useState<any>([]);
+	const [data, setData] = useState<TicketGraphData[]>([]);
 
 	useEffect(() => {
 		setTimeout(() => {

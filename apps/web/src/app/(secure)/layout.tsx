@@ -1,8 +1,6 @@
-import { Avatar, Button, Dropdown, Flex, Layout, MenuProps } from "antd";
+import { Layout } from "antd";
 import SiderComponent from "./sider";
-import { Content, Header } from "antd/es/layout/layout";
-import { UserOutlined } from "@ant-design/icons";
-import Link from "next/link";
+import { Content } from "antd/es/layout/layout";
 import HeaderComponent from "./header";
 
 export default function RootLayout({
@@ -10,21 +8,6 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const items: MenuProps["items"] = [
-		{
-			key: "profile",
-			label: <Link href="/profile">Profile</Link>,
-		},
-		{
-			key: "settings",
-			label: <Link href="/settings">Settings</Link>,
-		},
-		{
-			key: "logout",
-			label: "Logout",
-		},
-	];
-
 	return (
 		<Layout style={{ minHeight: "100vh" }}>
 			<SiderComponent />

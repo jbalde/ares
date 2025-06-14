@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, Space } from "antd";
+import { Button, Card, Col, Row } from "antd";
 import UsersTableComponent from "./users-table";
 import Link from "next/link";
 import { unstable_cache } from "next/cache";

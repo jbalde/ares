@@ -1,15 +1,5 @@
-import {
-	Avatar,
-	Button,
-	Dropdown,
-	Flex,
-	Layout,
-	MenuProps,
-	Select,
-	Space,
-} from "antd";
-import SiderComponent from "./sider";
-import { Content, Header } from "antd/es/layout/layout";
+import { Avatar, Button, Dropdown, Flex, MenuProps, Select, Space } from "antd";
+import { Header } from "antd/es/layout/layout";
 import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -28,14 +18,6 @@ export default function HeaderComponent() {
 			label: "Logout",
 		},
 	];
-
-	const onChange = (value: string) => {
-		console.log(`selected ${value}`);
-	};
-
-	const onSearch = (value: string) => {
-		console.log("search:", value);
-	};
 
 	return (
 		<Header style={{ padding: "5px 16px" }}>

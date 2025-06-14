@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, Space } from "antd";
+import { Button, Card, Col, Row } from "antd";
 import TicketsTableComponent from "./tickets-table";
 import Link from "next/link";
 

@@ -23,7 +23,7 @@ export default function TicketsTableComponent({
 			title: "Ticket",
 			dataIndex: "name",
 			key: "name",
-			render: (text: string, record: any) => (
+			render: (text: string, record: Ticket) => (
 				<Link href={`/tickets/${record.id}`}>{text}</Link>
 			),
 		},

@@ -1,11 +1,12 @@
 "use client";
-import { Table, Tag } from "antd";
+import { User } from "@/lib/db/prisma";
+import { Table } from "antd";
 import Link from "next/link";
 
 export default async function UsersTableComponent({
 	users = [],
 }: {
-	users: any[];
+	users: User[];
 }) {
 	const dataSource = users.map((user) => ({
 		id: user.id,
