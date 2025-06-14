@@ -4,6 +4,7 @@ import {
 	AlertOutlined,
 	ApiOutlined,
 	BarChartOutlined,
+	ContactsOutlined,
 	DashboardOutlined,
 	ExceptionOutlined,
 	EyeOutlined,
@@ -45,6 +46,11 @@ export default function SiderComponent() {
 						key: "tickets",
 						icon: <ExceptionOutlined />,
 						label: <Link href="/tickets">Tickets</Link>,
+					},
+					{
+						key: "customers",
+						icon: <ContactsOutlined />,
+						label: <Link href="/customers">Customers</Link>,
 					},
 					{
 						key: "users",
