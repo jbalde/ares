@@ -2,19 +2,16 @@
 import { Table, Tag } from "antd";
 import Link from "next/link";
 
-export default function UsersTableComponent() {
-	const dataSource = [
-		{
-			id: "1",
-			name: "User 1",
-			email: "user1@example.com",
-		},
-		{
-			id: "2",
-			name: "User 2",
-			email: "user2@example.com",
-		},
-	];
+export default async function UsersTableComponent({
+	users = [],
+}: {
+	users: any[];
+}) {
+	const dataSource = users.map((user) => ({
+		id: user.id,
+		name: user.name,
+		email: user.email,
+	}));
 
 	const columns = [
 		{

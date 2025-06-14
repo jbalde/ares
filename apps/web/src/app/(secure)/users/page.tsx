@@ -1,8 +1,23 @@
 import { Button, Card, Col, Row, Space } from "antd";
 import UsersTableComponent from "./users-table";
 import Link from "next/link";
+import { unstable_cache } from "next/cache";
+import { PrismaClient } from "@/db/prisma";
 
-export default function UsersPage() {
+const getUsers = unstable_cache(
+	async () => {
+		const prisma = new PrismaClient();
+		const users = await prisma.user.findMany({});
+
+		return users;
+	},
+	["list-users"],
+	{ revalidate: 10, tags: ["list-users"] }
+);
+
+export default async function UsersPage() {
+	const users = await getUsers();
+
 	return (
 		<>
 			<Row gutter={[16, 16]}>
@@ -17,7 +32,7 @@ export default function UsersPage() {
 				<Col span={24}>
 					<Card variant="borderless">
 						<h2>Users list</h2>
-						<UsersTableComponent />
+						<UsersTableComponent users={users} />
 					</Card>
 				</Col>
 			</Row>
