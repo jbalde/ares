@@ -15,35 +15,245 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+model Tenant {
+  id                    Int                     @id @default(autoincrement())
+  createdAt             DateTime                @default(now())
+  updatedAt             DateTime                @updatedAt
+  name                  String
+  userTenants           UserTenant[]
+  teams                 Team[]
+  customers             Customer[]
+  tickets               Ticket[]
+  slas                  SLA[]
+  settings              Setting[]
+  knowledgeBaseArticle  KnowledgeBaseArticle[]
+  knowledgeBaseCategory KnowledgeBaseCategory[]
+  integration           Integration[]
+  alert                 Alert[]
+  report                Report[]
+}
+
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  name     String
-  password String
-  Ticket   Ticket[]
+  id                   Int                    @id @default(autoincrement())
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  email                String                 @unique
+  name                 String
+  password             String
+  role                 UserRole[]             @default([AGENT])
+  status               UserStatus             @default(ACTIVE)
+  tenants              UserTenant[]
+  teams                TeamMember[]
+  ticketsAssigned      Ticket[]               @relation("TicketAssigned")
+  ticketComment        TicketComment[]
+  knowledgeBaseArticle KnowledgeBaseArticle[]
+  alert                Alert[]
+  ticket               Ticket[]
 
   @@index([email], name: "idx_user_email")
 }
 
-model Ticket {
-  id          Int      @id @default(autoincrement())
-  subject     String
-  description String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
-  createdBy   User     @relation(fields: [createdById], references: [id])
-  createdById Int
-  status      String
+enum UserRole {
+  ADMIN
+  MANAGER
+  AGENT
+  CUSTOMER
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+model Team {
+  id        Int          @id @default(autoincrement())
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  name      String
+  tenantId  Int
+  tenant    Tenant       @relation(fields: [tenantId], references: [id])
+  members   TeamMember[]
+}
+
+model TeamMember {
+  id     Int  @id @default(autoincrement())
+  teamId Int
+  userId Int
+  team   Team @relation(fields: [teamId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
+}
+
+model UserTenant {
+  userId   Int
+  tenantId Int
+  user     User   @relation(fields: [userId], references: [id])
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  @@id([userId, tenantId])
 }
 
 model Customer {
-  id    Int     @id @default(autoincrement())
-  name  String?
-  email String?
-  phone String?
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String?
+  phone    String?
+  tenant   Tenant   @relation(fields: [tenantId], references: [id])
+  tenantId Int
+  tickets  Ticket[]
 }
 
-model Tenant {
-  id   Int     @id @default(autoincrement())
-  name String?
+model Ticket {
+  id           Int             @id @default(autoincrement())
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  subject      String
+  description  String
+  status       TicketStatus    @default(OPEN)
+  priority     TicketPriority  @default(MEDIUM)
+  tenantId     Int
+  tenant       Tenant          @relation(fields: [tenantId], references: [id])
+  assignedToId Int?
+  assignedTo   User?           @relation("TicketAssigned", fields: [assignedToId], references: [id])
+  customerId   Int?
+  customer     Customer?       @relation(fields: [customerId], references: [id])
+  comments     TicketComment[]
+  attachments  Attachment[]
+  User         User?           @relation(fields: [userId], references: [id])
+  userId       Int?
+}
+
+enum TicketStatus {
+  OPEN
+  TRIAGE
+  PENDING_CUSTOMER
+  PENDING_AGENT
+  IN_PROGRESS
+  DONE
+  CANCELLED
+  ON_HOLD
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+model TicketComment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ticketId  Int
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+  content   String
+}
+
+model Attachment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ticketId  Int
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  url       String
+  fileName  String
+  fileType  String
+}
+
+model KnowledgeBaseArticle {
+  id          Int                    @id @default(autoincrement())
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
+  title       String
+  content     String
+  slug        String
+  categoryId  Int?
+  tenantId    Int
+  tenant      Tenant                 @relation(fields: [tenantId], references: [id])
+  category    KnowledgeBaseCategory? @relation(fields: [categoryId], references: [id])
+  createdById Int
+  createdBy   User                   @relation(fields: [createdById], references: [id])
+}
+
+model KnowledgeBaseCategory {
+  id        Int                    @id @default(autoincrement())
+  createdAt DateTime               @default(now())
+  updatedAt DateTime               @updatedAt
+  tenantId  Int
+  tenant    Tenant                 @relation(fields: [tenantId], references: [id])
+  name      String
+  slug      String
+  articles  KnowledgeBaseArticle[]
+}
+
+model Integration {
+  id        Int             @id @default(autoincrement())
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  tenantId  Int
+  tenant    Tenant          @relation(fields: [tenantId], references: [id])
+  type      IntegrationType
+  config    Json
+  enabled   Boolean         @default(true)
+}
+
+enum IntegrationType {
+  SLACK
+  EMAIL
+  WEBHOOK
+  CHAT
+  FORM
+}
+
+model Setting {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tenantId  Int
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  key       String
+  value     String
+}
+
+model SLA {
+  id                  Int      @id @default(autoincrement())
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  tenantId            Int
+  tenant              Tenant   @relation(fields: [tenantId], references: [id])
+  name                String
+  responseTimeHours   Int
+  managementTimeHours Int
+  resolutionTimeHours Int
+  active              Boolean  @default(true)
+}
+
+model Alert {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  tenantId  Int
+  tenant    Tenant    @relation(fields: [tenantId], references: [id])
+  type      AlertType
+  message   String
+  read      Boolean   @default(false)
+  User      User?     @relation(fields: [userId], references: [id])
+  userId    Int?
+}
+
+enum AlertType {
+  INFO
+  WARNING
+  ERROR
+}
+
+model Report {
+  id          Int      @id @default(autoincrement())
+  tenantId    Int
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  name        String
+  generatedAt DateTime @default(now())
+  data        Json
 }
