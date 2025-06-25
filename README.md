@@ -22,4 +22,28 @@ While searching for an open-source alternative, I came across many outdated proj
 
 Alternatives like **TrueDesk** and **Peppermint** served as sources of inspiration for building this project.
 
+## 🚀 Getting Started
+
+Follow these steps to set up your local development environment:
+
+1. **Create your environment file.** Copy the example configuration file to `.env`:
+
+   ```bash
+   cp apps/web/env.example apps/web/.env
+   ```
+
+2. **Fill in the required variables.** Edit `apps/web/.env` and provide the database credentials. If you do not have a PostgreSQL instance with connection pooling, you can reuse the same connection string for all URLs.
+
+3. **Initialize the database.** From the `apps/web` directory run the Prisma command to push the schema:
+
+   ```bash
+   npx prisma push
+   ```
+
+4. **Start the development server.** From the project root run:
+
+   ```bash
+   yarn dev
+   ```
+
 Give a ⭐️ if this project helped you!
