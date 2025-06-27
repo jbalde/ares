@@ -3,6 +3,7 @@ import { Button, Checkbox, Flex, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import { login } from "./login";
+import Link from "next/link";
 
 export default function LoginForm() {
 	return (
@@ -54,7 +55,7 @@ export default function LoginForm() {
 					<Button block type="primary" htmlType="submit">
 						Log in
 					</Button>
-					or <a href="">Register now!</a>
+					or <Link href="/signup">Register now!</Link>
 				</Form.Item>
 			</Form>
 		</Flex>
