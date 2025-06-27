@@ -1,8 +1,23 @@
 import { Button, Card, Col, Row } from "antd";
 import TicketsTableComponent from "./tickets-table";
 import Link from "next/link";
+import { unstable_cache } from "next/cache";
+import { PrismaClient } from "@/lib/db/prisma";
 
-export default function TicketsPage() {
+const getTickets = unstable_cache(
+	async () => {
+		const prisma = new PrismaClient();
+		const tickets = await prisma.ticket.findMany({});
+
+		return tickets;
+	},
+	["list-tickets"],
+	{ revalidate: 10, tags: ["list-tickets"] }
+);
+
+export default async function TicketsPage() {
+	const tickets = await getTickets();
+
 	return (
 		<>
 			<Row gutter={[16, 16]}>
@@ -17,7 +32,7 @@ export default function TicketsPage() {
 				<Col span={24}>
 					<Card variant="borderless">
 						<h2>Open tickets</h2>
-						<TicketsTableComponent />
+						<TicketsTableComponent tickets={tickets} />
 					</Card>
 				</Col>
 			</Row>

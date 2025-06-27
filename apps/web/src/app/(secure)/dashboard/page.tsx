@@ -37,18 +37,31 @@ const getTicketsLastsMonths = unstable_cache(
 		const prev2Tickets = await getTicketsFromMonth(2);
 
 		const tickets = {
-			recents: prevTickets.filter((ticket) => ticket.status === "open"),
+			recents: prevTickets.filter(
+				(ticket) => ticket.status !== "DONE" && ticket.status !== "CANCELLED"
+			),
 			total: {
 				value: prevTickets.length,
 				percentage:
 					(prevTickets.length - prev2Tickets.length) / prev2Tickets.length,
 			},
 			open: {
-				value: prevTickets.filter((ticket) => ticket.status !== "done").length,
+				value: prevTickets.filter(
+					(ticket) => ticket.status !== "DONE" && ticket.status !== "CANCELLED"
+				).length,
 				percentage:
-					(prevTickets.filter((ticket) => ticket.status !== "done").length -
-						prev2Tickets.filter((ticket) => ticket.status !== "done").length) /
-					prev2Tickets.filter((ticket) => ticket.status !== "done").length,
+					(prevTickets.filter(
+						(ticket) =>
+							ticket.status !== "DONE" && ticket.status !== "CANCELLED"
+					).length -
+						prev2Tickets.filter(
+							(ticket) =>
+								ticket.status !== "DONE" && ticket.status !== "CANCELLED"
+						).length) /
+					prev2Tickets.filter(
+						(ticket) =>
+							ticket.status !== "DONE" && ticket.status !== "CANCELLED"
+					).length,
 			},
 		};
 

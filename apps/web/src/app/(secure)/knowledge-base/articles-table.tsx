@@ -4,27 +4,21 @@ import { Table } from "antd";
 import Link from "next/link";
 
 export default function ArticlesTableComponent({
-  articles = [],
+	articles = [],
 }: {
-  articles: KnowledgeBaseArticle[];
+	articles: KnowledgeBaseArticle[];
 }) {
-  const dataSource = articles.map((article) => ({
-    id: article.id,
-    title: article.title,
-    slug: article.slug,
-  }));
+	const columns = [
+		{
+			title: "Title",
+			dataIndex: "title",
+			key: "title",
+			render: (text: string, record: KnowledgeBaseArticle) => (
+				<Link href={`/knowledge-base/${record.id}`}>{text}</Link>
+			),
+		},
+		{ title: "Slug", dataIndex: "slug", key: "slug" },
+	];
 
-  const columns = [
-    {
-      title: "Title",
-      dataIndex: "title",
-      key: "title",
-      render: (text: string, record: any) => (
-        <Link href={`/knowledge-base/${record.id}`}>{text}</Link>
-      ),
-    },
-    { title: "Slug", dataIndex: "slug", key: "slug" },
-  ];
-
-  return <Table dataSource={dataSource} columns={columns} rowKey="id" />;
+	return <Table dataSource={articles} columns={columns} rowKey="id" />;
 }

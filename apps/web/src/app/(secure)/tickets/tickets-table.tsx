@@ -3,28 +3,11 @@ import { Ticket } from "@/lib/db/prisma";
 import { Table, Tag } from "antd";
 import Link from "next/link";
 
-export default function TicketsTableComponent() {
-	const dataSource = [
-		{
-			id: "1",
-			name: "Tickent 1",
-			status: "open",
-			priority: "low",
-			assignedTo: "John Doe",
-			createdAt: "2023-10-01 12:00:00",
-			tenant: "Tenant 1",
-		},
-		{
-			id: "2",
-			name: "Ticket 2",
-			status: "in progress",
-			priority: "medium",
-			assignedTo: "John Doe",
-			createdAt: "2023-10-01 12:00:00",
-			tenant: "Tenant X",
-		},
-	];
-
+export default function TicketsTableComponent({
+	tickets = [],
+}: {
+	tickets: Ticket[];
+}) {
 	const columns = [
 		{
 			title: "Ticket",
@@ -67,5 +50,5 @@ export default function TicketsTableComponent() {
 		},
 	];
 
-	return <Table dataSource={dataSource} columns={columns} />;
+	return <Table dataSource={tickets} columns={columns} />;
 }

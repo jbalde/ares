@@ -3,26 +3,28 @@ import { PrismaClient } from "@/db/prisma";
 import EditCustomerForm from "./form";
 
 export default async function EditCustomerPage({
-  params,
+	params,
 }: {
-  params: { id: string };
+	params: Promise<{ id: string }>;
 }) {
-  const prisma = new PrismaClient();
-  const customer = await prisma.customer.findUnique({
-    where: { id: Number(params.id) },
-  });
+	const { id } = await params;
 
-  if (!customer) {
-    return <h1>Customer not found</h1>;
-  }
+	const prisma = new PrismaClient();
+	const customer = await prisma.customer.findUnique({
+		where: { id: Number(id) },
+	});
 
-  return (
-    <Row gutter={[16, 16]}>
-      <Col span={24}>
-        <Card variant="borderless" title="Edit customer">
-          <EditCustomerForm customer={customer} />
-        </Card>
-      </Col>
-    </Row>
-  );
+	if (!customer) {
+		return <h1>Customer not found</h1>;
+	}
+
+	return (
+		<Row gutter={[16, 16]}>
+			<Col span={24}>
+				<Card variant="borderless" title="Edit customer">
+					<EditCustomerForm customer={customer} />
+				</Card>
+			</Col>
+		</Row>
+	);
 }

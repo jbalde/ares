@@ -8,16 +8,6 @@ export default function TicketsTableComponent({
 }: {
 	tickets: Ticket[];
 }) {
-	const datasource = tickets.map((ticket) => ({
-		id: ticket.id,
-		name: ticket.subject,
-		status: ticket.status,
-		priority: "low",
-		assignedTo: "John Doe",
-		createdAt: ticket.createdAt,
-		tenant: "Tenant X",
-	}));
-
 	const columns = [
 		{
 			title: "Ticket",
@@ -60,5 +50,5 @@ export default function TicketsTableComponent({
 		},
 	];
 
-	return <Table dataSource={datasource} columns={columns} />;
+	return <Table dataSource={tickets} columns={columns} />;
 }
