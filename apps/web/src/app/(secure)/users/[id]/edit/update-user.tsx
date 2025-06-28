@@ -1,6 +1,5 @@
 "use server";
 import { PrismaClient } from "@/db/prisma";
-import bcrypt from "bcrypt";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
