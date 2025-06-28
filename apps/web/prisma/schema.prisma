@@ -29,8 +29,9 @@ model Tenant {
   knowledgeBaseArticle  KnowledgeBaseArticle[]
   knowledgeBaseCategory KnowledgeBaseCategory[]
   integration           Integration[]
-  alert                 Alert[]
-  report                Report[]
+  alerts                Alert[]
+  reports               Report[]
+  portals               Portal[]
 }
 
 model User {
@@ -186,6 +187,21 @@ model KnowledgeBaseCategory {
   name      String
   slug      String
   articles  KnowledgeBaseArticle[]
+  Portal    Portal?                @relation(fields: [portalId], references: [id])
+  portalId  Int?
+}
+
+model Portal {
+  id          Int                     @id @default(autoincrement())
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+  tenantId    Int
+  tenant      Tenant                  @relation(fields: [tenantId], references: [id])
+  name        String
+  slug        String
+  url         String
+  description String?
+  categories  KnowledgeBaseCategory[]
 }
 
 model Integration {
