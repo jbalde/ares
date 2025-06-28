@@ -13,6 +13,7 @@ import {
 	SettingOutlined,
 	TeamOutlined,
 	UserOutlined,
+	DeploymentUnitOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 import Link from "next/link";
@@ -61,6 +62,11 @@ export default function SiderComponent() {
 						key: "teams",
 						icon: <TeamOutlined />,
 						label: <Link href="/teams">Teams</Link>,
+					},
+					{
+						key: "tenants",
+						icon: <DeploymentUnitOutlined />,
+						label: <Link href="/tenants">Tenants</Link>,
 					},
 					{
 						key: "knowledge-base",
