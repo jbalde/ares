@@ -1,8 +1,10 @@
-import { Button, Card, Col, Row } from "antd";
+import { Breadcrumb, Button, Card, Col, Row, Space } from "antd";
 import UsersTableComponent from "./users-table";
 import Link from "next/link";
 import { unstable_cache } from "next/cache";
 import { PrismaClient } from "@/db/prisma";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Home07Icon, User03Icon } from "@hugeicons/core-free-icons";
 
 const getUsers = unstable_cache(
 	async () => {
@@ -21,6 +23,20 @@ export default async function UsersPage() {
 	return (
 		<>
 			<Row gutter={[16, 16]}>
+				<Col span={24}>
+					<Breadcrumb
+						items={[
+							{
+								href: "/",
+								title: <HugeiconsIcon icon={Home07Icon} size={20} />,
+							},
+							{
+								href: "/users",
+								title: "Users",
+							},
+						]}
+					/>
+				</Col>
 				<Col span={24}>
 					<h1>Users</h1>
 				</Col>

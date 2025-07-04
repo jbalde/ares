@@ -1,7 +1,8 @@
 import { Avatar, Button, Dropdown, Flex, MenuProps, Select, Space } from "antd";
 import { Header } from "antd/es/layout/layout";
-import { UserOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { User03Icon } from "@hugeicons/core-free-icons";
 
 export default function HeaderComponent() {
 	const items: MenuProps["items"] = [
@@ -45,7 +46,7 @@ export default function HeaderComponent() {
 					<Dropdown menu={{ items }} arrow={{ pointAtCenter: true }}>
 						<Button
 							shape="circle"
-							icon={<Avatar icon={<UserOutlined />} />}
+							icon={<Avatar icon={<HugeiconsIcon icon={User03Icon} />} />}
 							size="large"
 						></Button>
 					</Dropdown>

@@ -12,6 +12,8 @@
 		"@ant-design/nextjs-registry": "^1.0.2",
 		"@ant-design/plots": "^2.4.0",
 		"@ant-design/v5-patch-for-react-19": "^1.0.3",
+		"@hugeicons/core-free-icons": "^1.0.14",
+		"@hugeicons/react": "^1.0.5",
 		"@prisma/client": "^6.9.0",
 		"@prisma/extension-accelerate": "^2.0.1",
 		"antd": "^5.26.0",
