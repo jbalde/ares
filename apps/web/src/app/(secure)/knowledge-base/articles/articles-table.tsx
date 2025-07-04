@@ -14,7 +14,7 @@ export default function ArticlesTableComponent({
 			dataIndex: "title",
 			key: "title",
 			render: (text: string, record: KnowledgeBaseArticle) => (
-				<Link href={`/knowledge-base/${record.id}`}>{text}</Link>
+				<Link href={`/knowledge-base/articles/${record.id}`}>{text}</Link>
 			),
 		},
 		{ title: "Slug", dataIndex: "slug", key: "slug" },

@@ -1,22 +1,22 @@
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import {
-        AlertOutlined,
-        ApiOutlined,
-        BarChartOutlined,
-        ContactsOutlined,
-        DashboardOutlined,
-        ExceptionOutlined,
-        EyeOutlined,
-        FieldTimeOutlined,
-        ReadOutlined,
-        SettingOutlined,
-        TeamOutlined,
-        UserOutlined,
-        DeploymentUnitOutlined,
-        FolderOutlined,
-        GlobalOutlined,
-        FileTextOutlined,
+	AlertOutlined,
+	ApiOutlined,
+	BarChartOutlined,
+	ContactsOutlined,
+	DashboardOutlined,
+	ExceptionOutlined,
+	EyeOutlined,
+	FieldTimeOutlined,
+	ReadOutlined,
+	SettingOutlined,
+	TeamOutlined,
+	UserOutlined,
+	DeploymentUnitOutlined,
+	FolderOutlined,
+	GlobalOutlined,
+	FileTextOutlined,
 } from "@ant-design/icons";
 import Image from "next/image";
 import Link from "next/link";
@@ -71,28 +71,30 @@ export default function SiderComponent() {
 						icon: <DeploymentUnitOutlined />,
 						label: <Link href="/tenants">Tenants</Link>,
 					},
-                                        {
-                                                key: "knowledge-base",
-                                                icon: <ReadOutlined />,
-                                                label: "Knowledge Base",
-                                                children: [
-                                                        {
-                                                                key: "kb-articles",
-                                                                icon: <FileTextOutlined />,
-                                                                label: <Link href="/knowledge-base">Articles</Link>,
-                                                        },
-                                                        {
-                                                                key: "kb-categories",
-                                                                icon: <FolderOutlined />,
-                                                                label: <Link href="/knowledge-base/categories">Categories</Link>,
-                                                        },
-                                                        {
-                                                                key: "kb-portals",
-                                                                icon: <GlobalOutlined />,
-                                                                label: <Link href="/knowledge-base/portals">Portals</Link>,
-                                                        },
-                                                ],
-                                        },
+					{
+						key: "knowledge-base",
+						icon: <ReadOutlined />,
+						label: "Knowledge Base",
+						children: [
+							{
+								key: "kb-articles",
+								icon: <FileTextOutlined />,
+								label: <Link href="/knowledge-base/articles">Articles</Link>,
+							},
+							{
+								key: "kb-categories",
+								icon: <FolderOutlined />,
+								label: (
+									<Link href="/knowledge-base/categories">Categories</Link>
+								),
+							},
+							{
+								key: "kb-portals",
+								icon: <GlobalOutlined />,
+								label: <Link href="/knowledge-base/portals">Portals</Link>,
+							},
+						],
+					},
 					{
 						key: "monitoring",
 						icon: <EyeOutlined />,
