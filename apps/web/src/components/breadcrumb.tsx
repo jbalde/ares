@@ -1,5 +1,5 @@
 "use client";
-import { Breadcrumb, Button, Card, Col, Row } from "antd";
+import { Breadcrumb } from "antd";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Home07Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
@@ -22,12 +22,7 @@ export async function BreadcrumbComponent({
 		...items,
 	];
 
-	const itemRender = (
-		currentRoute: ItemType,
-		params: any,
-		items: ItemType[],
-		paths: string[]
-	): React.ReactNode => {
+	const itemRender = (currentRoute: ItemType): React.ReactNode => {
 		return <Link href={currentRoute.href!}>{currentRoute.title}</Link>;
 	};
 
