@@ -1,10 +1,10 @@
-import { Breadcrumb, Button, Card, Col, Row, Space } from "antd";
+import { Breadcrumb, Button, Card, Col, Row } from "antd";
 import UsersTableComponent from "./users-table";
 import Link from "next/link";
 import { unstable_cache } from "next/cache";
 import { PrismaClient } from "@/db/prisma";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Home07Icon, User03Icon } from "@hugeicons/core-free-icons";
+import { Home07Icon } from "@hugeicons/core-free-icons";
 
 const getUsers = unstable_cache(
 	async () => {
