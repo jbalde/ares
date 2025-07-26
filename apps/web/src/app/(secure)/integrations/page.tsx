@@ -1,4 +1,6 @@
-import { Card, Col, Row } from "antd";
+import { Breadcrumb, Card, Col, Row } from "antd";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Home07Icon } from "@hugeicons/core-free-icons";
 import IntegrationsTableComponent from "./integrations-table";
 import { PrismaClient } from "@/db/prisma";
 import { unstable_cache } from "next/cache";
@@ -17,6 +19,14 @@ export default async function IntegrationsPage() {
 
   return (
     <Row gutter={[16, 16]}>
+      <Col span={24}>
+        <Breadcrumb
+          items={[
+            { href: "/", title: <HugeiconsIcon icon={Home07Icon} size={20} /> },
+            { href: "/integrations", title: "Integrations" },
+          ]}
+        />
+      </Col>
       <Col span={24}>
         <h1>Integrations</h1>
       </Col>

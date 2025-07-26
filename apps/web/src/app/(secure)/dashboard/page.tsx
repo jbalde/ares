@@ -1,4 +1,6 @@
-import { Card, Col, Row, Statistic } from "antd";
+import { Breadcrumb, Card, Col, Row, Statistic } from "antd";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Home07Icon } from "@hugeicons/core-free-icons";
 import {
 	ArrowDownOutlined,
 	ArrowUpOutlined,
@@ -94,12 +96,25 @@ export default async function DashboardPage() {
 		};
 	};
 
-	return (
-		<>
-			<Row gutter={[16, 16]}>
-				<Col span={24}>
-					<h1>Dashboard</h1>
-				</Col>
+        return (
+                <>
+                        <Row gutter={[16, 16]}>
+                                <Col span={24}>
+                                        <Breadcrumb
+                                                items={[
+                                                        {
+                                                                href: "/",
+                                                                title: (
+                                                                        <HugeiconsIcon icon={Home07Icon} size={20} />
+                                                                ),
+                                                        },
+                                                        { href: "/dashboard", title: "Dashboard" },
+                                                ]}
+                                        />
+                                </Col>
+                                <Col span={24}>
+                                        <h1>Dashboard</h1>
+                                </Col>
 				<Col span={6}>
 					<Card variant="borderless">
 						<Statistic

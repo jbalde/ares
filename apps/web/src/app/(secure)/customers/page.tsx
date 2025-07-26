@@ -1,4 +1,6 @@
-import { Card, Col, Row, Button } from "antd";
+import { Breadcrumb, Card, Col, Row, Button } from "antd";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Home07Icon } from "@hugeicons/core-free-icons";
 import { PrismaClient } from "@/db/prisma";
 import CustomersTableComponent from "./customers-table";
 import { unstable_cache } from "next/cache";
@@ -19,6 +21,14 @@ export default async function CustomersPage() {
 
   return (
     <Row gutter={[16, 16]}>
+      <Col span={24}>
+        <Breadcrumb
+          items={[
+            { href: "/", title: <HugeiconsIcon icon={Home07Icon} size={20} /> },
+            { href: "/customers", title: "Customers" },
+          ]}
+        />
+      </Col>
       <Col span={24}>
         <h1>Customers</h1>
       </Col>

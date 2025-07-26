@@ -3,6 +3,7 @@ import { PrismaClient } from "@/db/prisma";
 import TenantsTableComponent from "./tenants-table";
 import { unstable_cache } from "next/cache";
 import Link from "next/link";
+import { BreadcrumbComponent } from "@/components/breadcrumb";
 
 const getTenants = unstable_cache(
 	async () => {
@@ -19,6 +20,9 @@ export default async function TenantsPage() {
 
 	return (
 		<Row gutter={[16, 16]}>
+			<Col span={24}>
+				<BreadcrumbComponent items={[{ href: "/tenants", title: "Tenants" }]} />
+			</Col>
 			<Col span={24}>
 				<h1>Tenants</h1>
 			</Col>

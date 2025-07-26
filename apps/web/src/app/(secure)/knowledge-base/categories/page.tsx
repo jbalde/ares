@@ -1,4 +1,6 @@
-import { Button, Card, Col, Row } from "antd";
+import { Breadcrumb, Button, Card, Col, Row } from "antd";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { Home07Icon } from "@hugeicons/core-free-icons";
 import CategoriesTableComponent from "./categories-table";
 import { PrismaClient } from "@/db/prisma";
 import { unstable_cache } from "next/cache";
@@ -18,6 +20,14 @@ export default async function KnowledgeBaseCategoriesPage() {
 
   return (
     <Row gutter={[16, 16]}>
+      <Col span={24}>
+        <Breadcrumb
+          items={[
+            { href: "/", title: <HugeiconsIcon icon={Home07Icon} size={20} /> },
+            { href: "/knowledge-base/categories", title: "Categories" },
+          ]}
+        />
+      </Col>
       <Col span={24}>
         <h1>Categories</h1>
       </Col>

@@ -1,6 +1,7 @@
 import { Card, Col, Row } from "antd";
 import { PrismaClient } from "@/db/prisma";
 import EditTenantForm from "./form";
+import { BreadcrumbComponent } from "@/components/breadcrumb";
 
 export default async function EditTenantPage({
 	params,
@@ -20,6 +21,20 @@ export default async function EditTenantPage({
 
 	return (
 		<Row gutter={[16, 16]}>
+			<Col span={24}>
+				<BreadcrumbComponent
+					items={[
+						{
+							href: "/tenants",
+							title: "Tenants",
+						},
+						{
+							href: `/tenants/${tenant.id}`,
+							title: `Tenant ${tenant.name}`,
+						},
+					]}
+				/>
+			</Col>
 			<Col span={24}>
 				<Card variant="borderless" title="Edit tenant">
 					<EditTenantForm tenant={tenant} />

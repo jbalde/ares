@@ -1,6 +1,7 @@
 import { Button, Card, Col, Row } from "antd";
 import { PrismaClient } from "@/db/prisma";
 import Link from "next/link";
+import { BreadcrumbComponent } from "@/components/breadcrumb";
 
 export default async function TenantPage({
 	params,
@@ -19,6 +20,20 @@ export default async function TenantPage({
 
 	return (
 		<Row gutter={[16, 16]}>
+			<Col span={24}>
+				<BreadcrumbComponent
+					items={[
+						{
+							href: "/tenants",
+							title: "Tenants",
+						},
+						{
+							href: `/tenants/${tenant.id}`,
+							title: `Tenant ${tenant.name}`,
+						},
+					]}
+				/>
+			</Col>
 			<Col span={24}>
 				<Card
 					title={tenant.name || "Tenant"}

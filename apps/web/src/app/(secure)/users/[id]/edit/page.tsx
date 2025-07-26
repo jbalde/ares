@@ -1,8 +1,7 @@
-import { Breadcrumb, Card, Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 import { PrismaClient } from "@/db/prisma";
 import EditUserForm from "./form";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Home07Icon } from "@hugeicons/core-free-icons";
+import { BreadcrumbComponent } from "@/components/breadcrumb";
 
 export default async function EditUserPage({
 	params,
@@ -22,12 +21,8 @@ export default async function EditUserPage({
 	return (
 		<Row gutter={[16, 16]}>
 			<Col span={24}>
-				<Breadcrumb
+				<BreadcrumbComponent
 					items={[
-						{
-							href: "/",
-							title: <HugeiconsIcon icon={Home07Icon} size={20} />,
-						},
 						{
 							href: "/users",
 							title: "Users",
