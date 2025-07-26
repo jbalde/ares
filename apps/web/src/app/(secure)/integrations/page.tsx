@@ -1,9 +1,10 @@
-import { Breadcrumb, Card, Col, Row } from "antd";
+import { Breadcrumb, Card, Col, Row, Button } from "antd";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Home07Icon } from "@hugeicons/core-free-icons";
 import IntegrationsTableComponent from "./integrations-table";
 import { PrismaClient } from "@/db/prisma";
 import { unstable_cache } from "next/cache";
+import Link from "next/link";
 
 const getIntegrations = unstable_cache(
   async () => {
@@ -29,6 +30,11 @@ export default async function IntegrationsPage() {
       </Col>
       <Col span={24}>
         <h1>Integrations</h1>
+      </Col>
+      <Col span={24}>
+        <Link href="/integrations/create">
+          <Button type="primary">Create integration</Button>
+        </Link>
       </Col>
       <Col span={24}>
         <Card variant="borderless">

@@ -218,6 +218,7 @@ model Integration {
 enum IntegrationType {
   SLACK
   EMAIL
+  GMAIL
   WEBHOOK
   CHAT
   FORM
